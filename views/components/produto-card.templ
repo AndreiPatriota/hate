@@ -1,0 +1,16 @@
+package components
+
+import "hate/models"
+
+templ CardProduto(produto models.Produto) {
+<article>
+  <header>
+      <h3>
+        { produto.Nome }
+      </h3>
+  </header>
+  <section>
+    <p>{ produto.Descricao }</p>
+  </section>
+</article>
+}
