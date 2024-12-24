@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"hate/models"
+	"hate/views/components"
 	"hate/views/pages"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -23,4 +25,28 @@ func ShowProdutos(c echo.Context) error {
 }
 func ShowSobre(c echo.Context) error {
 	return render(c, pages.Sobre())
+}
+
+func AddProduto(c echo.Context) error {
+	nome := c.FormValue("nome")
+	descricao := c.FormValue("descricao")
+
+	p := models.Produto{
+		Nome: nome,
+		Descricao: descricao,
+	}
+
+	models.DB.Create(&p)
+
+	return render(c, components.CardProduto(p))
+}
+func DelProduto(c echo.Context) error {
+	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
+
+	models.DB.Delete(&models.Produto{}, id)
+
+	var produtos []models.Produto
+	models.DB.Find(&produtos)
+
+	return render(c, components.ListProdutos(produtos))
 }

@@ -1,0 +1,9 @@
+package components
+
+import "hate/models"
+
+templ ListProdutos(produtos []models.Produto) {
+    for _, p := range produtos {
+        @CardProduto(p)
+    }
+}

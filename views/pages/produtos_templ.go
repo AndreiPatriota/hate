@@ -32,17 +32,15 @@ func Produtos(produtos []models.Produto) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"page\" x-data=\"{dialogOpen: true}\"><p>Aqui está a página de produtos</p><button x-on:click=\"$refs.popup.showModal()\">Adiciona</button> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"page\" x-data=\"{dialogOpen: true}\"><p>Aqui está a página de produtos</p><button x-on:click=\"$refs.popup.showModal()\">Adiciona</button><div id=\"listofprodutos\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, p := range produtos {
-			templ_7745c5c3_Err = components.CardProduto(p).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		templ_7745c5c3_Err = components.ListProdutos(produtos).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<dialog x-ref=\"popup\"><div><button x-on:click=\"$refs.popup.close()\">Fecha</button></div><form hx-post=\"/api/v1/produtos\" hx-trigger=\"submit throttle:1000\" hx-swap=\"none\" x-on:submit=\"$refs.popup.close()\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\"></label> <label for=\"descricao\">Nome: <input id=\"descricao\" name=\"descricao\" type=\"text\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></dialog></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\"><div><div class=\"btn-close-form-produto\"><span x-on:click=\"$refs.popup.close()\" class=\"material-symbols-outlined\">close</span></div><form hx-post=\"/produtos/novo\" hx-trigger=\"submit\" hx-target=\"#listofprodutos\" hx-swap=\"beforeend\" x-on:submit=\"$refs.popup.close()\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div></dialog></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

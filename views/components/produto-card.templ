@@ -1,16 +1,19 @@
 package components
 
 import "hate/models"
+import "fmt"
 
 templ CardProduto(produto models.Produto) {
-<article>
+<article class="produto">
   <header>
-      <h3>
-        { produto.Nome }
-      </h3>
+    <h3>{ produto.Nome }</h3>
+    <span class="material-symbols-outlined" 
+    hx-delete={fmt.Sprintf("/produtos/deleta/%d", produto.ID)} hx-target="listofprodutos" hx-swap="innerhtml"> delete </span>
   </header>
   <section>
     <p>{ produto.Descricao }</p>
   </section>
 </article>
+
+
 }

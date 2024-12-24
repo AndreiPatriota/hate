@@ -1,8 +1,7 @@
-<article>
+<article class="produto">
   <header>
-      <h3>
-        { produto.Nome }
-      </h3>
+    <h3>{ produto.Nome }</h3>
+    <span class="material-symbols-outlined" hx-delete={fmt.Sprintf("/produtos/deleta/%d", produto.ID)} hx> delete </span>
   </header>
   <section>
     <p>{ produto.Descricao }</p>
