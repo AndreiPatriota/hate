@@ -7,8 +7,11 @@ templ CardProduto(produto models.Produto) {
 <article class="produto">
   <header>
     <h3>{ produto.Nome }</h3>
-    <span class="material-symbols-outlined" 
-    hx-delete={fmt.Sprintf("/produtos/deleta/%d", produto.ID)} hx-target="listofprodutos" hx-swap="innerhtml"> delete </span>
+    <i class="material-icons" 
+    hx-delete={ string(templ.URL(fmt.Sprintf("/produtos/deleta/%d", produto.ID))) } 
+    hx-target="#listofprodutos" 
+    hx-swap="innerhtml" 
+    hx-trigger="click"> delete </i>
   </header>
   <section>
     <p>{ produto.Descricao }</p>

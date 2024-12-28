@@ -1,0 +1,15 @@
+package pages
+
+type TempoAgora struct {
+    Temp float32
+    Vento float32
+}
+
+templ TempoIta() {
+   <h2>Como está o tempo em Itapetim?</h2>
+
+    <div hx-ext="sse" sse-connect="/tempo-ita">
+        <div sse-swap="blondel"></div>
+    </div>
+
+}

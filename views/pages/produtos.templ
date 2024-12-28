@@ -4,7 +4,18 @@ import "hate/models"
 import "hate/views/components"
 
 templ Produtos(produtos []models.Produto) {
-<div class="page" x-data="{dialogOpen: true}">
+
+<div class="page" 
+     x-data="{
+        fechaForm() {
+                setTimeout(()=>{
+                  this.$refs.nomeInput.value = ''
+                  this.$refs.descricaoInput.value = ''
+                  this.$refs.popup.close()
+                }, 100)
+            }
+     }"
+     >
   <p>Aqui está a página de produtos</p>
   <button x-on:click="$refs.popup.showModal()">Adiciona</button>
 
@@ -15,28 +26,36 @@ templ Produtos(produtos []models.Produto) {
   <dialog x-ref="popup">
     <div>
       <div class="btn-close-form-produto">
-        <span x-on:click="$refs.popup.close()" class="material-symbols-outlined">
-close
-</span>
+        <i x-on:click="fechaForm" 
+        class="material-icons">
+          close
+        </i>
       </div>
       <form hx-post="/produtos/novo" 
             hx-trigger="submit" 
             hx-target="#listofprodutos" 
             hx-swap="beforeend" 
-            x-on:submit="$refs.popup.close()">
-        <label for="nome"
+            x-on:submit="fechaForm">
+        <label for="nome" 
           >Nome:
-          <input id="nome" name="nome" type="text" />
+          <input id="nome" 
+          name="nome" 
+          type="text" 
+          x-ref="nomeInput"/>
         </label>
         <label for="descricao"
           >Descrição:
-          <input id="descricao" name="descricao" type="text" />
+          <input id="descricao" 
+          name="descricao" 
+          type="text" 
+          x-ref="descricaoInput"/>
         </label>
         <input type="submit" value="Cadastra">
         <input type="reset" value="Limpa" />
       </form>
     </div>
   </dialog>
+
 </div>
 
 }

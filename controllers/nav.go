@@ -26,6 +26,9 @@ func ShowProdutos(c echo.Context) error {
 func ShowSobre(c echo.Context) error {
 	return render(c, pages.Sobre())
 }
+func ShowTempo(c echo.Context) error {
+	return render(c, pages.TempoIta())
+}
 
 func AddProduto(c echo.Context) error {
 	nome := c.FormValue("nome")
