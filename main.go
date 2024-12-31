@@ -52,11 +52,13 @@ func main() {
 
 	e.GET("/", controllers.ShowIndex)
 	e.GET("/home", controllers.ShowHome)
-	e.GET("/produtos", controllers.ShowProdutos)
 	e.GET("/sobre", controllers.ShowSobre)
 	e.GET("/tempo", controllers.ShowTempo)
-	e.POST("produtos/novo", controllers.AddProduto)
-	e.DELETE("produtos/deleta/:id", controllers.DelProduto)
+	
+	e.GET("/produtos", controllers.ShowProdutos)
+	e.POST("/produto/adiciona", controllers.AdicionaProduto)
+	e.PUT("/produto/altera/:id", controllers.AlteraProduto)
+	e.DELETE("produto/deleta/:id", controllers.DeletaProduto)
 
 	e.GET("/api/v1/produtos", controllers.GetProdutos)
 	e.POST("/api/v1/produtos", controllers.StoreProduto)

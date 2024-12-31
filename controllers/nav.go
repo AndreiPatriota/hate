@@ -18,10 +18,20 @@ func ShowHome(c echo.Context) error {
 	return render(c, pages.Home())
 }
 func ShowProdutos(c echo.Context) error {
+	tipo := c.QueryParam("tipo")
+	idRaw := c.QueryParam("id")
+
+	var edita bool = false
+	var id int64 = 0
+	if tipo == "edita" {
+		edita = true
+		id, _ = strconv.ParseInt(idRaw, 10, 32)
+	}
+
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, pages.Produtos(produtos))
+	return render(c, pages.Produtos(produtos, edita, id))
 }
 func ShowSobre(c echo.Context) error {
 	return render(c, pages.Sobre())
@@ -30,7 +40,7 @@ func ShowTempo(c echo.Context) error {
 	return render(c, pages.TempoIta())
 }
 
-func AddProduto(c echo.Context) error {
+func AdicionaProduto(c echo.Context) error {
 	nome := c.FormValue("nome")
 	descricao := c.FormValue("descricao")
 
@@ -38,12 +48,29 @@ func AddProduto(c echo.Context) error {
 		Nome: nome,
 		Descricao: descricao,
 	}
-
 	models.DB.Create(&p)
 
-	return render(c, components.CardProduto(p))
+	var produtos []models.Produto
+	models.DB.Find(&produtos)
+
+	return render(c, pages.Produtos(produtos, false, 0))
 }
-func DelProduto(c echo.Context) error {
+func AlteraProduto(c echo.Context) error {
+	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
+	novoNome := c.FormValue("nome")
+	novaDescricao := c.FormValue("descricao")
+
+	var produto models.Produto
+	models.DB.First(&produto, id)
+
+	produto.Nome = novoNome
+	produto.Descricao = novaDescricao
+	models.DB.Save(&produto)
+
+	return render(c, components.CardProduto(produto))
+
+}
+func DeletaProduto(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
 
 	models.DB.Delete(&models.Produto{}, id)
@@ -51,5 +78,5 @@ func DelProduto(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, components.ListProdutos(produtos))
+	return render(c, pages.Produtos(produtos, false, 0))
 }

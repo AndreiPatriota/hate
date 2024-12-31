@@ -4,17 +4,32 @@ import "hate/models"
 import "fmt"
 
 templ CardProduto(produto models.Produto) {
-<article class="produto">
+<article 
+  class="produto"
+  id={ fmt.Sprintf("produto-%v",produto.ID) }>
   <header>
     <h3>{ produto.Nome }</h3>
-    <i class="material-icons" 
-    hx-delete={ string(templ.URL(fmt.Sprintf("/produtos/deleta/%d", produto.ID))) } 
-    hx-target="#listofprodutos" 
-    hx-swap="innerhtml" 
-    hx-trigger="click"> delete </i>
+    <i 
+      class="material-icons" 
+      hx-delete={ string(templ.URL(fmt.Sprintf("/produto/deleta/%d", produto.ID))) } 
+      hx-select="#listofprodutos"
+      hx-target="#listofprodutos" 
+      hx-trigger="click"
+      > delete 
+    </i>
+    <i 
+      class="material-icons"
+      hx-get={ string(templ.URL(fmt.Sprintf("/produtos?tipo=edita&id=%v", produto.ID)))} 
+      hx-target="#formulario"
+      hx-select="#formulario"
+      hx-swap="outterHTML"
+      hx-trigger="click"
+      x-on:click={ fmt.Sprintf("abreEdicao('%v', '%v')", produto.Nome, produto.Descricao) }
+    > edit 
+    </i>
   </header>
   <section>
-    <p>{ produto.Descricao }</p>
+    <p> { produto.Descricao } </p>
   </section>
 </article>
 

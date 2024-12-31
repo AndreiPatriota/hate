@@ -10,8 +10,9 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "hate/models"
 import "hate/views/components"
+import "fmt"
 
-func Produtos(produtos []models.Produto) templ.Component {
+func Produtos(produtos []models.Produto, edita bool, idProduto int64) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -32,7 +33,7 @@ func Produtos(produtos []models.Produto) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"page\" x-data=\"{\n        fechaForm() {\n                setTimeout(()=&gt;{\n                  this.$refs.nomeInput.value = &#39;&#39;\n                  this.$refs.descricaoInput.value = &#39;&#39;\n                  this.$refs.popup.close()\n                }, 100)\n            }\n     }\"><p>Aqui está a página de produtos</p><button x-on:click=\"$refs.popup.showModal()\">Adiciona</button><div id=\"listofprodutos\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"page\" x-data=\"{\n        idEdicao: 0,\n        nomeEdicao: &#39;&#39;,\n        descricaoEdicao: &#39;&#39;,\n        fechaForm() {\n          setTimeout(()=&gt;{\n            this.$refs.nomeInput.value = &#39;&#39;\n            this.$refs.descricaoInput.value = &#39;&#39;\n            this.$refs.popup.close()\n          }, 100)\n        },\n        abreEdicao(nome, desc) {\n          this.nomeEdicao = nome\n          this.descricaoEdicao = desc\n          $refs.popup.showModal()\n        },\n        abreAdicao() {\n          $refs.popup.showModal()\n        }\n     }\"><p>Aqui está a página de produtos</p><button hx-get=\"/produtos\" hx-target=\"#formulario\" hx-select=\"#formulario\" hx-swap=\"outterHTML\" hx-trigger=\"click\" x-on:click=\"abreAdicao\">Adiciona</button><div id=\"listofprodutos\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -40,7 +41,48 @@ func Produtos(produtos []models.Produto) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\"><div><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close</i></div><form hx-post=\"/produtos/novo\" hx-trigger=\"submit\" hx-target=\"#listofprodutos\" hx-swap=\"beforeend\" x-on:submit=\"fechaForm\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div></dialog></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !edita {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"formulario\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close</i></div><form hx-post=\"/produto/adiciona\" hx-select=\"#listofprodutos\" hx-target=\"#listofprodutos\" hx-swap=\"outterHTML\" x-on:submit=\"fechaForm\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"formulario\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close</i></div><form hx-put=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var2 string
+			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/produto/altera/%v", idProduto))))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pages/produtos.templ`, Line: 109, Col: 83}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var3 string
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("#produto-%v", idProduto))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pages/produtos.templ`, Line: 110, Col: 58}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-swap=\"outterHTML\" x-on:submit=\"fechaForm();\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\" x-bind:value=\"nomeEdicao\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\" x-bind:value=\"descricaoEdicao\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</dialog></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

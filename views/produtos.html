@@ -1,8 +1,18 @@
-<h2>Como está o tempo em Itapetim?</h2>
-
-<div hx-ext="sse" sse-connect="/server-url" sse-swap="event1,event2"></div>
-
-<div hx-ext="sse" sse-connect="/server-url">
-  <div sse-swap="event1"></div>
-  <div sse-swap="event2"></div>
-</div>
+<article class="produto" id={fmt.Sprintf("produto-%v",produto.ID)}>
+  <header>
+    <h3 
+      x-ref={fmt.Sprintf("produto-nome-%v", produto.ID)}
+    >{ produto.Nome }</h3>
+    <i class="material-icons" 
+    hx-delete={ string(templ.URL(fmt.Sprintf("/produtos/deleta/%d", produto.ID))) } 
+    hx-select="#listofprodutos"
+    hx-target="#listofprodutos" 
+    hx-trigger="click"> delete </i>
+    <i class="material-icons" 
+      x-on:click={fmt.Sprintf("abreEdicao(%v)", produto.ID)}
+    > edit </i>
+  </header>
+  <section>
+    <p x-ref={fmt.Sprintf("produto-descricao-%v", produto.ID)}>{ produto.Descricao }</p>
+  </section>
+</article>
