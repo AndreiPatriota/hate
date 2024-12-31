@@ -1,93 +1,40 @@
 package pages
 
-// import "hate/views/pages"
-
-// import ("hate/views/pages")
+import "hate/views/components"
 
 templ Index() {
   <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+      <script src="//unpkg.com/alpinejs" defer></script>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
+      <style>
+        article.produto > header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
-  <style>
-  article.produto > header {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn-close-form-produto {
-  display: flex;
-  flex-flow: row-reverse nowrap;
-}
-</style> 
-
-  
-
-    <title>Olaaaarrrr</title>
-  </head>
-  <body class="container">
-    <div x-data="{ tituloPagina : 'Principal' }">
-      <nav>
-        <ul>
-          <li>
-            <a href="" 
-               hx-get="/home" 
-               hx-target="main" 
-               hx-swap="innerhtml"
-               x-on:click="tituloPagina = 'Principal'"
-               >Home</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <h1 x-text="tituloPagina"></h1>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="" 
-               hx-get="/produtos" 
-               hx-target="main" 
-               hx-swap="innerhtml"
-               x-on:click="tituloPagina = 'Produtos'"
-              >Produtos
-            </a>
-          </li>
-          <li>
-            <a href="" 
-               hx-get="/tempo"
-               hx-target="main"
-               hx-swap="innerhtml"
-               x-on:click="tituloPagina = 'Tempo em Ita'"
-               >Tempo</a>
-          </li>
-          <li>
-            <a href="" 
-               hx-get="/sobre"
-               hx-target="main"
-               hx-swap="innerhtml"
-               x-on:click="tituloPagina = 'Sobre'"
-               >Sobre</a>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        @Home()
-      </main>
-    </div>
-  </body>
+      .btn-close-form-produto {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+      }
+      </style> 
+      <title>Olaaaarrrr</title>
+    </head>
+    <body class="container">
+        @components.Header()
+        <main>
+          @Home()
+        </main>
+    </body>
 </html>
 
 }

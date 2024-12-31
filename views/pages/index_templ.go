@@ -8,9 +8,8 @@ package pages
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-// import "hate/views/pages"
+import "hate/views/components"
 
-// import ("hate/views/pages")
 func Index() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
@@ -32,7 +31,15 @@ func Index() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"pt-br\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"//unpkg.com/alpinejs\" defer></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css\"><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><style>\n  article.produto > header {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.btn-close-form-produto {\n  display: flex;\n  flex-flow: row-reverse nowrap;\n}\n</style><title>Olaaaarrrr</title></head><body class=\"container\"><div x-data=\"{ tituloPagina : &#39;Principal&#39; }\"><nav><ul><li><a href=\"\" hx-get=\"/home\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Principal&#39;\">Home</a></li></ul><ul><li><h1 x-text=\"tituloPagina\"></h1></li></ul><ul><li><a href=\"\" hx-get=\"/produtos\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Produtos&#39;\">Produtos</a></li><li><a href=\"\" hx-get=\"/tempo\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Tempo em Ita&#39;\">Tempo</a></li><li><a href=\"\" hx-get=\"/sobre\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Sobre&#39;\">Sobre</a></li></ul></nav><main>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"pt-br\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"//unpkg.com/alpinejs\" defer></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css\"><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><style>\n        article.produto > header {\n        display: flex;\n        flex-flow: row nowrap;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .btn-close-form-produto {\n        display: flex;\n        flex-flow: row-reverse nowrap;\n      }\n      </style><title>Olaaaarrrr</title></head><body class=\"container\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = components.Header().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -40,7 +47,7 @@ func Index() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</main></div></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</main></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

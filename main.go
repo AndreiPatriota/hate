@@ -60,6 +60,12 @@ func main() {
 	e.PUT("/produto/altera/:id", controllers.AlteraProduto)
 	e.DELETE("produto/deleta/:id", controllers.DeletaProduto)
 
+	e.GET("/components/header", controllers.GetHeader)
+	e.GET("/components/produto-form-add", controllers.GetProdutoFormAdd)
+	e.GET("/components/produto-list", controllers.GetProdutoList)
+	e.GET("/components/card-produto/:id", controllers.GetCardProduto)
+	e.GET("/components/produto-form-edita/:id", controllers.GetProdutoFormEdita)
+
 	e.GET("/api/v1/produtos", controllers.GetProdutos)
 	e.POST("/api/v1/produtos", controllers.StoreProduto)
 

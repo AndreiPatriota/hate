@@ -1,0 +1,56 @@
+package components
+
+templ ProdutoFormAdd() {
+    <div x-data="{
+        fechaForm() {
+            setTimeout(()=>{
+                this.$refs.nomeInput.value = ''
+                this.$refs.descricaoInput.value = ''
+                $refs.popup.close()
+            }, 100)
+        }
+    }">
+        <div class="btn-close-form-produto">
+          <i
+            x-on:click="fechaForm"
+            class="material-icons"
+            > close
+          </i>
+        </div>
+        <form
+            hx-post="/produto/adiciona"
+            hx-target="#lista-produtos"
+            hx-swap="innerHTML"
+            x-on:submit="fechaForm"
+            >
+          <label
+            for="nome"
+            >Nome:
+            <input
+              id="nome"
+              name="nome"
+              type="text"
+              x-ref="nomeInput"
+              />
+          </label>
+          <label
+            for="descricao"
+            >Descrição:
+            <input
+              id="descricao"
+              name="descricao"
+              type="text"
+              x-ref="descricaoInput"
+              />
+          </label>
+          <input
+            type="submit"
+            value="Cadastra"
+            >
+          <input
+            type="reset"
+            value="Limpa"
+            />
+        </form>
+      </div>
+}

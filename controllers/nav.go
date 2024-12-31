@@ -18,20 +18,10 @@ func ShowHome(c echo.Context) error {
 	return render(c, pages.Home())
 }
 func ShowProdutos(c echo.Context) error {
-	tipo := c.QueryParam("tipo")
-	idRaw := c.QueryParam("id")
-
-	var edita bool = false
-	var id int64 = 0
-	if tipo == "edita" {
-		edita = true
-		id, _ = strconv.ParseInt(idRaw, 10, 32)
-	}
-
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, pages.Produtos(produtos, edita, id))
+	return render(c, pages.Produtos(produtos))
 }
 func ShowSobre(c echo.Context) error {
 	return render(c, pages.Sobre())
@@ -53,7 +43,7 @@ func AdicionaProduto(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, pages.Produtos(produtos, false, 0))
+	return render(c, components.ListProdutos(produtos))
 }
 func AlteraProduto(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
@@ -78,5 +68,5 @@ func DeletaProduto(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, pages.Produtos(produtos, false, 0))
+	return render(c, components.ListProdutos(produtos))
 }
