@@ -51,14 +51,14 @@ func main() {
 	e.Use(middleware.Static("/static"))
 
 	e.GET("/", controllers.ShowIndex)
-	e.GET("/home", controllers.ShowHome)
-	e.GET("/sobre", controllers.ShowSobre)
-	e.GET("/tempo", controllers.ShowTempo)
+	e.GET("/pages/home", controllers.ShowHome)
+	e.GET("/pages/sobre", controllers.ShowSobre)
+	e.GET("/pages/tempo", controllers.ShowTempo)
+	e.GET("/pages/produtos", controllers.ShowProdutos)
 	
-	e.GET("/produtos", controllers.ShowProdutos)
-	e.POST("/produto/adiciona", controllers.AdicionaProduto)
-	e.PUT("/produto/altera/:id", controllers.AlteraProduto)
-	e.DELETE("produto/deleta/:id", controllers.DeletaProduto)
+	e.POST("/actions/produto/adiciona", controllers.AdicionaProduto)
+	e.PUT("/actions/produto/altera/:id", controllers.AlteraProduto)
+	e.DELETE("/actions/produto/deleta/:id", controllers.DeletaProduto)
 
 	e.GET("/components/header", controllers.GetHeader)
 	e.GET("/components/produto-form-add", controllers.GetProdutoFormAdd)

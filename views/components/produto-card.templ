@@ -10,7 +10,7 @@ templ CardProduto(produto models.Produto) {
     <h3>{ produto.Nome }</h3>
     <i 
       class="material-icons" 
-      hx-delete={ string(templ.URL(fmt.Sprintf("/produto/deleta/%d", produto.ID))) } 
+      hx-delete={ string(templ.URL(fmt.Sprintf("/actions/produto/deleta/%d", produto.ID))) } 
       hx-target="#lista-produtos" 
       hx-swap="innerHTML"
       hx-trigger="click"
