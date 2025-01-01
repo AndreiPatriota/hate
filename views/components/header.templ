@@ -1,52 +1,49 @@
 package components
 
 templ Header() {
-    <header class="main">    
+    <header>
         <div x-data="{ tituloPagina : 'Principal' }">
-            <nav>
-                <ul>
-                <li>
-                    <a href=""
-                    hx-get="/home"
-                    hx-target="main"
-                    hx-swap="innerhtml"
-                    x-on:click="tituloPagina = 'Principal'"
-                    >Home</a>
-                </li>
-                </ul>
-                <ul>
-                <li>
-                    <h1 x-text="tituloPagina"></h1>
-                </li>
-                </ul>
-                <ul>
-                <li>
-                    <a href=""
-                    hx-get="/produtos"
-                    hx-target="main"
-                    hx-swap="innerhtml"
-                    x-on:click="tituloPagina = 'Produtos'"
-                    >Produtos
-                    </a>
-                </li>
-                <li>
-                    <a href=""
-                    hx-get="/tempo"
-                    hx-target="main"
-                    hx-swap="innerhtml"
-                    x-on:click="tituloPagina = 'Tempo em Ita'"
-                    >Tempo</a>
-                </li>
-                <li>
-                    <a href=""
-                    hx-get="/sobre"
-                    hx-target="main"
-                    hx-swap="innerhtml"
-                    x-on:click="tituloPagina = 'Sobre'"
-                    >Sobre</a>
-                </li>
-                </ul>
+            <nav class="navbar" aria-label="main navigation">
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                        <a
+                            href=""
+                            hx-get="/home"
+                            hx-target="main"
+                            hx-swap="innerhtml"
+                            x-on:click="tituloPagina = 'Principal'"
+                            class="navbar-item"
+                            >Home</a>
+                    </div>
+                    <h1 class="title" x-text="tituloPagina"></h1>
+                    <div class="navbar-end">
+                        <a
+                            href=""
+                            hx-get="/produtos"
+                            hx-target="main"
+                            hx-swap="innerhtml"
+                            x-on:click="tituloPagina = 'Produtos'"
+                            class="navbar-item"
+                            >Produtos</a>
+                        <a
+                            href=""
+                            hx-get="/tempo"
+                            hx-target="main"
+                            hx-swap="innerhtml"
+                            x-on:click="tituloPagina = 'Tempo'"
+                            class="navbar-item"
+                            >Tempo</a>
+                        <a
+                            href=""
+                            hx-get="/sobre"
+                            hx-target="main"
+                            hx-swap="innerhtml"
+                            x-on:click="tituloPagina = 'Sobre'"
+                            class="navbar-item"
+                            >Sobre</a>
+                    </div>
+                </div>
             </nav>
         </div>
-    </header>  
+    </header>
 }
