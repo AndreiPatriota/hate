@@ -1,0 +1,39 @@
+package components
+
+import (
+	"fmt"
+	"hate/models"
+)
+
+templ ProdutosId(produto models.Produto) {
+	<div class="card">
+		<header class="card-header">
+			<p class="card-header-title">{ produto.Nome }</p>
+		</header>
+		<div class="card-content">
+			<div class="content">
+				{ produto.Descricao }
+			</div>
+		</div>
+		<footer class="card-footer">
+			<i
+				class="material-icons card-footer-item"
+				hx-delete={ string(templ.URL(fmt.Sprintf("/produtos/%v", produto.ID))) }
+				hx-target="closest .card"
+				hx-swap="outerHTML"
+				hx-trigger="click"
+			>
+				delete 
+			</i>
+			<i
+				class="material-icons card-footer-item"
+				hx-get={ string(templ.URL(fmt.Sprintf("/produtos/form/%v", produto.ID))) }
+				hx-target="#formulario-produto"
+				hx-trigger="click"
+				x-on:click="modalEstado = 'is-active'"
+			>
+				edit 
+			</i>
+		</footer>
+	</div>
+}

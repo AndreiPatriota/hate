@@ -1,0 +1,30 @@
+package pages
+
+import (
+	"hate/models"
+	"hate/views/components"
+)
+
+templ ProdutosPage(produtos []models.Produto) {
+	@Index("Produtos") {
+		<div class="page" x-data="{ modalEstado: ''}">
+			<h2 class="subtitle is-large">Aqui está a página de produtos</h2>
+			<button
+				hx-get="/produtos/form"
+				hx-target="#formulario-produto"
+				x-on:click="modalEstado = 'is-active'"
+			>
+				Adiciona
+			</button>
+			<div id="lista-produtos">
+				@components.Produtos(produtos)
+			</div>
+			<dialog x-bind:class="`modal ${modalEstado}`">
+				<div class="modal-content">
+					<div id="formulario-produto"></div>
+				</div>
+				<button class="modal-close is-large" aria-label="close">Fecha</button>
+			</dialog>
+		</div>
+	}
+}

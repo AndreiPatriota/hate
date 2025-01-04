@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	"hate/models"
@@ -10,27 +10,27 @@ import (
 )
 
 
-func ShowIndex(c echo.Context) error {
-	return render(c, pages.Index())
+func GetIndex(c echo.Context) error {
+	return render(c, pages.Index("Principal"))
 }
 
-func ShowHome(c echo.Context) error {
+func GetHome(c echo.Context) error {
 	return render(c, pages.Home())
 }
-func ShowProdutos(c echo.Context) error {
+func GetProdutosPage(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, pages.Produtos(produtos))
+	return render(c, pages.ProdutosPage(produtos))
 }
-func ShowSobre(c echo.Context) error {
+func GetSobre(c echo.Context) error {
 	return render(c, pages.Sobre())
 }
-func ShowTempo(c echo.Context) error {
+func GetTempo(c echo.Context) error {
 	return render(c, pages.TempoIta())
 }
 
-func AdicionaProduto(c echo.Context) error {
+func PostProdutos(c echo.Context) error {
 	nome := c.FormValue("nome")
 	descricao := c.FormValue("descricao")
 
@@ -43,9 +43,9 @@ func AdicionaProduto(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, components.ListProdutos(produtos))
+	return render(c, components.Produtos(produtos))
 }
-func AlteraProduto(c echo.Context) error {
+func PutProdutosId(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
 	novoNome := c.FormValue("nome")
 	novaDescricao := c.FormValue("descricao")
@@ -57,10 +57,10 @@ func AlteraProduto(c echo.Context) error {
 	produto.Descricao = novaDescricao
 	models.DB.Save(&produto)
 
-	return render(c, components.CardProduto(produto))
+	return render(c, components.ProdutosId(produto))
 
 }
-func DeletaProduto(c echo.Context) error {
+func DeleteProdutosId(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
 
 	models.DB.Delete(&models.Produto{}, id)
@@ -68,5 +68,5 @@ func DeletaProduto(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
-	return render(c, components.ListProdutos(produtos))
+	return c.HTML(200, "")
 }

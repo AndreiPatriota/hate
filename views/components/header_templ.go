@@ -8,7 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Header() templ.Component {
+func Header(titulo string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +29,20 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<header><div x-data=\"{ tituloPagina : &#39;Principal&#39; }\"><nav class=\"navbar\" aria-label=\"main navigation\"><div class=\"navbar-menu\"><div class=\"navbar-start\"><a href=\"\" hx-get=\"/home\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Principal&#39;\" class=\"navbar-item\">Home</a></div><h1 class=\"title\" x-text=\"tituloPagina\"></h1><div class=\"navbar-end\"><a href=\"\" hx-get=\"/produtos\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Produtos&#39;\" class=\"navbar-item\">Produtos</a> <a href=\"\" hx-get=\"/tempo\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Tempo&#39;\" class=\"navbar-item\">Tempo</a> <a href=\"\" hx-get=\"/sobre\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Sobre&#39;\" class=\"navbar-item\">Sobre</a></div></div></nav></div></header>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<header hx-boost=\"true\"><nav class=\"navbar\" aria-label=\"main navigation\"><div class=\"navbar-menu\"><div class=\"navbar-start\"><a href=\"/\" class=\"navbar-item\">Home</a></div><h1 class=\"title\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(titulo)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/header.templ`, Line: 10, Col: 30}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar-end\"><a href=\"/produtos/page\" class=\"navbar-item\">Produtos</a> <a href=\"/tempo\" class=\"navbar-item\">Tempo</a> <a href=\"/sobre\" class=\"navbar-item\">Sobre</a></div></div></nav></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

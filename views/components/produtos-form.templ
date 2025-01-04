@@ -1,0 +1,59 @@
+package components 
+
+templ ProdutoForm() {
+	<div
+		x-data="{
+        fechaForm() {
+            setTimeout(()=>{
+                this.$refs.nomeInput.value = ''
+                this.$refs.descricaoInput.value = ''
+                modalEstado = ''
+            }, 100)
+        }
+    }"
+	>
+		<button class="button" x-on:click="fechaForm">
+			<i class="material-icons">close </i>
+		</button>
+		<div class="btn-close-form-produto"></div>
+		<form
+			hx-post="/produtos"
+			hx-target="#lista-produtos"
+			hx-swap="innerHTML"
+			x-on:submit="fechaForm"
+		>
+			<div class="field">
+				<label for="nome" class="label">Nome</label>
+				<div class="control">
+					<input
+						type="text"
+						class="input"
+						name="nome"
+						placeholder="Nome do produto"
+						x-ref="nomeInput"
+					/>
+				</div>
+			</div>
+			<div class="field">
+				<label for="descricao" class="label">Descrição</label>
+				<div class="control">
+					<input
+						type="text"
+						class="input"
+            name="descricao"
+						placeholder="Descrição do produto"
+						x-ref="descricaoInput"
+					/>
+				</div>
+			</div>
+			<div class="field is-grouped">
+				<div class="control">
+					<button class="button is-link">Cadastra</button>
+				</div>
+				<div class="control">
+					<button class="button is-link is-light">Limpa</button>
+				</div>
+			</div>
+		</form>
+	</div>
+}

@@ -1,49 +1,19 @@
 package components
 
-templ Header() {
-    <header>
-        <div x-data="{ tituloPagina : 'Principal' }">
-            <nav class="navbar" aria-label="main navigation">
-                <div class="navbar-menu">
-                    <div class="navbar-start">
-                        <a
-                            href=""
-                            hx-get="/home"
-                            hx-target="main"
-                            hx-swap="innerhtml"
-                            x-on:click="tituloPagina = 'Principal'"
-                            class="navbar-item"
-                            >Home</a>
-                    </div>
-                    <h1 class="title" x-text="tituloPagina"></h1>
-                    <div class="navbar-end">
-                        <a
-                            href=""
-                            hx-get="/produtos"
-                            hx-target="main"
-                            hx-swap="innerhtml"
-                            x-on:click="tituloPagina = 'Produtos'"
-                            class="navbar-item"
-                            >Produtos</a>
-                        <a
-                            href=""
-                            hx-get="/tempo"
-                            hx-target="main"
-                            hx-swap="innerhtml"
-                            x-on:click="tituloPagina = 'Tempo'"
-                            class="navbar-item"
-                            >Tempo</a>
-                        <a
-                            href=""
-                            hx-get="/sobre"
-                            hx-target="main"
-                            hx-swap="innerhtml"
-                            x-on:click="tituloPagina = 'Sobre'"
-                            class="navbar-item"
-                            >Sobre</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+templ Header(titulo string) {
+	<header hx-boost="true">
+		<nav class="navbar" aria-label="main navigation">
+			<div class="navbar-menu">
+				<div class="navbar-start">
+					<a href="/" class="navbar-item">Home</a>
+				</div>
+				<h1 class="title">{ titulo }</h1>
+				<div class="navbar-end">
+					<a href="/produtos/page" class="navbar-item">Produtos</a>
+					<a href="/tempo" class="navbar-item">Tempo</a>
+					<a href="/sobre" class="navbar-item">Sobre</a>
+				</div>
+			</div>
+		</nav>
+	</header>
 }

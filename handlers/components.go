@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	"hate/models"
@@ -8,40 +8,40 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func GetProdutoFormAdd (c echo.Context) error {
-	return render(c, components.ProdutoFormAdd())
+func GetProdutoForm (c echo.Context) error {
+	return render(c, components.ProdutoForm())
 }
 
 func GetHeader (c echo.Context) error {
-	return render(c, components.Header())
+	return render(c, components.Header("Titulo"))
 }
 
-func GetProdutoList(c echo.Context) error {
+func GetProdutos(c echo.Context) error {
 	var produtos []models.Produto
 
 	models.DB.Find(&produtos)
 	
-	return render(c, components.ListProdutos(produtos))
+	return render(c, components.Produtos(produtos))
 }
 
-func GetCardProduto(c echo.Context) error {
+func GetProdutosId(c echo.Context) error {
 	idRaw := c.Param("id")
 	var produto models.Produto
 	id, _ := strconv.ParseInt(idRaw, 10, 32) 
 
 	models.DB.Find(&produto, id)
 
-	return render(c, components.CardProduto(produto))
+	return render(c, components.ProdutosId(produto))
 }
 
-func GetProdutoFormEdita(c echo.Context) error {
+func GetProdutoFormId(c echo.Context) error {
 	idRaw := c.Param("id")
 	var produto models.Produto
 	id, _ := strconv.ParseInt(idRaw, 10, 32)
 
 	models.DB.Find(&produto, id)
 
-	return render(c, components.ProdutoFormEdita(produto))
+	return render(c, components.ProdutosFormId(produto))
 
 }
 

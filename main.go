@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"hate/controllers"
+	"hate/handlers"
 	"hate/models"
 
 	"github.com/labstack/echo/v4"
@@ -50,24 +50,24 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Static("/static"))
 
-	e.GET("/", controllers.ShowIndex)
-	e.GET("/home", controllers.ShowHome)
-	e.GET("/sobre", controllers.ShowSobre)
-	e.GET("/tempo", controllers.ShowTempo)
+	e.GET("/", handlers.GetIndex)
+	e.GET("/home", handlers.GetHome)
+	e.GET("/sobre", handlers.GetSobre)
+	e.GET("/tempo", handlers.GetTempo)
+	e.GET("/header", handlers.GetHeader)
 	
-	e.GET("/produtos", controllers.ShowProdutos)
-	e.POST("/produto/adiciona", controllers.AdicionaProduto)
-	e.PUT("/produto/altera/:id", controllers.AlteraProduto)
-	e.DELETE("produto/deleta/:id", controllers.DeletaProduto)
+	e.GET("/produtos/page", handlers.GetProdutosPage)
+	e.GET("/produtos/form", handlers.GetProdutoForm)
+	e.GET("/produtos/form/:id", handlers.GetProdutoFormId)
+	e.GET("/produtos", handlers.GetProdutos)
+	e.POST("/produtos", handlers.PostProdutos)
+	e.GET("/produtos/:id", handlers.GetProdutosId)
+	e.PUT("/produtos/:id", handlers.PutProdutosId)
+	e.DELETE("/produtos/:id", handlers.DeleteProdutosId)
 
-	e.GET("/components/header", controllers.GetHeader)
-	e.GET("/components/produto-form-add", controllers.GetProdutoFormAdd)
-	e.GET("/components/produto-list", controllers.GetProdutoList)
-	e.GET("/components/card-produto/:id", controllers.GetCardProduto)
-	e.GET("/components/produto-form-edita/:id", controllers.GetProdutoFormEdita)
 
-	e.GET("/api/v1/produtos", controllers.GetProdutos)
-	e.POST("/api/v1/produtos", controllers.StoreProduto)
+	e.GET("/api/v1/produtos", handlers.GetApiProdutos)
+	e.POST("/api/v1/produtos", handlers.PostApiProdutos)
 
 	e.GET("/tempo-ita", func(c echo.Context) error {
 		log.Printf("SSE client connected, ip: %v", c.RealIP())
@@ -105,7 +105,7 @@ func main() {
 				
 
 				// fires response
-				event := controllers.Event{
+				event := handlers.Event{
 					Data: []byte(message),
 					Event: []byte("blondel"),
 				}

@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	"net/http"
@@ -9,14 +9,14 @@ import (
 )
 
 
-func GetProdutos(c echo.Context) error {
+func GetApiProdutos(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
 
 	return c.JSON(http.StatusOK, &produtos)
 }
 
-func StoreProduto(c echo.Context) error {
+func PostApiProdutos(c echo.Context) error {
 	nome := c.FormValue("nome")
 	descricao := c.FormValue("descricao")
 
