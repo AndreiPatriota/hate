@@ -54,7 +54,7 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-bind:class=\"`modal ${modalEstado}`\"><div class=\"modal-content\"><div id=\"formulario-produto\"></div></div><button class=\"modal-close is-large\" aria-label=\"close\">Fecha</button></dialog></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-bind:class=\"`modal has-background-primary-00 ${modalEstado}`\"><div class=\"modal-content\"><div id=\"formulario-produto\"></div></div><button class=\"modal-close is-large\" aria-label=\"close\">Fecha</button></dialog></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

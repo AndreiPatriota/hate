@@ -4,6 +4,7 @@ import (
 	"hate/models"
 	"hate/views/components"
 	"hate/views/pages"
+	"log"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
@@ -49,6 +50,8 @@ func PutProdutosId(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
 	novoNome := c.FormValue("nome")
 	novaDescricao := c.FormValue("descricao")
+
+	log.Printf("nome: %v\ndescrição: %v", novoNome, novaDescricao)
 
 	var produto models.Produto
 	models.DB.First(&produto, id)

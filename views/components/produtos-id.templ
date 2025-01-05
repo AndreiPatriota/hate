@@ -6,7 +6,7 @@ import (
 )
 
 templ ProdutosId(produto models.Produto) {
-	<div class="card">
+	<div class="card" id={ fmt.Sprintf("produto-%v", produto.ID) }>
 		<header class="card-header">
 			<p class="card-header-title">{ produto.Nome }</p>
 		</header>

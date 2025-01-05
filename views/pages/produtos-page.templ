@@ -19,7 +19,8 @@ templ ProdutosPage(produtos []models.Produto) {
 			<div id="lista-produtos">
 				@components.Produtos(produtos)
 			</div>
-			<dialog x-bind:class="`modal ${modalEstado}`">
+			<dialog 
+				x-bind:class="`modal has-background-primary-00 ${modalEstado}`">
 				<div class="modal-content">
 					<div id="formulario-produto"></div>
 				</div>
