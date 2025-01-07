@@ -7,7 +7,7 @@ import (
 
 templ ProdutosPage(produtos []models.Produto) {
 	@Index("Produtos") {
-		<div class="page" x-data="{ modalEstado: ''}">
+		<div x-data="{ modalEstado: ''}">
 			<h2 class="subtitle is-large">Aqui está a página de produtos</h2>
 			<button
 				hx-get="/produtos/form"
@@ -19,8 +19,7 @@ templ ProdutosPage(produtos []models.Produto) {
 			<div id="lista-produtos">
 				@components.Produtos(produtos)
 			</div>
-			<dialog 
-				x-bind:class="`modal has-background-primary-00 ${modalEstado}`">
+			<dialog :class="`modal has-background-primary-00 ${modalEstado}`">
 				<div class="modal-content">
 					<div id="formulario-produto"></div>
 				</div>

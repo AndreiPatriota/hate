@@ -13,7 +13,7 @@ import (
 	"hate/views/components"
 )
 
-func ProdutosPage(produtos []models.Produto) templ.Component {
+func PokemonsPages(pokemons []models.Poke) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -46,21 +46,21 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data=\"{ modalEstado: &#39;&#39;}\"><h2 class=\"subtitle is-large\">Aqui está a página de produtos</h2><button hx-get=\"/produtos/form\" hx-target=\"#formulario-produto\" x-on:click=\"modalEstado = &#39;is-active&#39;\">Adiciona</button><div id=\"lista-produtos\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"level\"><div class=\"level-item\"><form hx-post=\"/pokemons\" hx-target=\"#lista-pokemons\" hx-swap=\"beforeend\"><div class=\"field has-addons\"><p class=\"control\"><input class=\"input\" type=\"text\" name=\"nome\" placeholder=\"Procure um Pokemon\"></p><p class=\"control\"><button class=\"button\" type=\"submit\">Buscar</button></p></div></form></div></div><div id=\"lista-pokemons\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.Produtos(produtos).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Pokemons(pokemons).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog :class=\"`modal has-background-primary-00 ${modalEstado}`\"><div class=\"modal-content\"><div id=\"formulario-produto\"></div></div><button class=\"modal-close is-large\" aria-label=\"close\">Fecha</button></dialog></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = Index("Produtos").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Index("Pokèmon").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

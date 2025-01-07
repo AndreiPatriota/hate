@@ -42,7 +42,7 @@ func Header(titulo string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar-end\"><a href=\"/produtos/page\" class=\"navbar-item\">Produtos</a> <a href=\"/tempo\" class=\"navbar-item\">Tempo</a> <a href=\"/sobre\" class=\"navbar-item\">Sobre</a></div></div></nav></header>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar-end\"><a href=\"/produtos/page\" class=\"navbar-item\">Produtos</a> <a href=\"/pokemons/page\" class=\"navbar-item\">Pokemons</a> <a href=\"/tempo\" class=\"navbar-item\">Tempo</a> <a href=\"/sobre\" class=\"navbar-item\">Sobre</a></div></div></nav></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

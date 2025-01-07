@@ -1,0 +1,32 @@
+package components
+
+import "hate/models"
+
+templ PokemonsId(pokemon models.Poke) {
+	<div class="card is-small">
+		<div class="card-content">
+			<div class="media">
+				<div class="media-left">
+					<figure class="is-48x48">
+						<img src={ pokemon.FotoUrl } alt={ pokemon.Nome }/>
+					</figure>
+				</div>
+				<div class="media-content">
+					<p class="title is-4">{ pokemon.Nome }</p>
+					<p class="subtitle is-6">{ pokemon.Tipo }</p>
+				</div>
+				<div class="media-right">
+					<audio controls>
+						<source src={ pokemon.ChoroUrl } type="audio/ogg"/>
+						<i class="material-icons">
+							volume-high 
+						</i>
+					</audio>
+				</div>
+			</div>
+			<div class="content">
+				{ pokemon.Caracteristica }
+			</div>
+		</div>
+	</div>
+}
