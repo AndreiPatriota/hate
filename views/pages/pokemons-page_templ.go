@@ -46,7 +46,7 @@ func PokemonsPages(pokemons []models.Poke) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"level\"><div class=\"level-item\"><form hx-post=\"/pokemons\" hx-target=\"#lista-pokemons\" hx-swap=\"beforeend\"><div class=\"field has-addons\"><p class=\"control\"><input class=\"input\" type=\"text\" name=\"nome\" placeholder=\"Procure um Pokemon\"></p><p class=\"control\"><button class=\"button\" type=\"submit\">Buscar</button></p></div></form></div></div><div id=\"lista-pokemons\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data x-init=\"$el.addEventListener(&#39;htmx:responseError&#39;, (event) =&gt; {\n\t\t\t\talert(&#39;Não achei esse Pokemon&#39;)\n\t\t\t})\"><div class=\"level\"><div class=\"level-item\"><form hx-post=\"/pokemons\" hx-target=\"#lista-pokemons\" hx-swap=\"afterbegin\"><div class=\"field has-addons\"><p class=\"control\"><input class=\"input\" type=\"text\" name=\"nome\" placeholder=\"Procure um Pokemon\"></p><p class=\"control\"><button class=\"button\" type=\"submit\">Buscar</button></p></div></form></div></div><div id=\"lista-pokemons\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -54,13 +54,13 @@ func PokemonsPages(pokemons []models.Poke) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = Index("Pokèmon").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Index("Pokémon").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -6,23 +6,30 @@ import (
 )
 
 templ PokemonsPages(pokemons []models.Poke) {
-	@Index("Pokèmon") {
-		<div class="level">
-			<div class="level-item">
-				<form hx-post="/pokemons" hx-target="#lista-pokemons" hx-swap="beforeend">
-					<div class="field has-addons">
-						<p class="control">
-							<input class="input" type="text" name="nome" placeholder="Procure um Pokemon"/>
-						</p>
-						<p class="control">
-							<button class="button" type="submit">Buscar</button>
-						</p>
-					</div>
-				</form>
+	@Index("Pokémon") {
+		<div
+			x-data
+			x-init="$el.addEventListener('htmx:responseError', (event) => {
+				alert('Não achei esse Pokemon')
+			})"
+		>
+			<div class="level">
+				<div class="level-item">
+					<form hx-post="/pokemons" hx-target="#lista-pokemons" hx-swap="afterbegin">
+						<div class="field has-addons">
+							<p class="control">
+								<input class="input" type="text" name="nome" placeholder="Procure um Pokemon"/>
+							</p>
+							<p class="control">
+								<button class="button" type="submit">Buscar</button>
+							</p>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
-		<div id="lista-pokemons">
-			@components.Pokemons(pokemons)
+			<div id="lista-pokemons">
+				@components.Pokemons(pokemons)
+			</div>
 		</div>
 	}
 }

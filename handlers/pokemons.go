@@ -6,7 +6,6 @@ import (
 	"hate/views/components"
 	"hate/views/pages"
 	"log"
-	"net/http"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
@@ -35,6 +34,11 @@ func PostPokemons(c echo.Context) error {
 	nome := c.FormValue("nome")
 	var pokemon models.Poke
 	p, err := pokeapi.Pokemon(nome)
+	log.Printf("BUNDABUNDABUNDABUNDABUNDABUNDAAAAA:   %v", p.ID)
+	if err != nil {
+		log.Printf("BLONDEL %v", err)
+		return c.HTML(404, "")
+	}
 
 	pokemon.ID = uint(p.ID)
 	pokemon.Nome = p.Name
@@ -47,10 +51,6 @@ func PostPokemons(c echo.Context) error {
 	// pokemon.Caracteristica = p2.Descriptions[0].Description
 	pokemon.Caracteristica = "Blondel"
 
-	if err != nil {
-		log.Printf("%v", err)
-		return c.HTML(http.StatusBadRequest, "")
-	}
 
 	models.DB.Create(&pokemon)
 
