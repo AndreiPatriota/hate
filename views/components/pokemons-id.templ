@@ -1,6 +1,9 @@
 package components
 
-import "hate/models"
+import (
+	"fmt"
+	"hate/models"
+)
 
 templ PokemonsId(pokemon models.Poke) {
 	<div class="card is-small">
@@ -27,6 +30,17 @@ templ PokemonsId(pokemon models.Poke) {
 			<div class="content">
 				{ pokemon.Caracteristica }
 			</div>
+			<footer class="card-footer">
+				<i
+					class="material-icons"
+					hx-delete={ string(templ.URL(fmt.Sprintf("/pokemons/%v", pokemon.Numero))) }
+					hx-target="closest .card"
+					hx-swap="outerHTML"
+					hx-trigger="click"
+				>
+					delete 
+				</i>
+			</footer>
 		</div>
 	</div>
 }

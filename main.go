@@ -68,6 +68,7 @@ func main() {
 	e.GET("/pokemons/page", handlers.GetPokemonsPage)
 	e.GET("/pokemons/:id", handlers.GetPokemonsId)
 	e.POST("/pokemons", handlers.PostPokemons)
+	e.DELETE("/pokemons/:id", handlers.DeletePokemonsId)
 
 
 	e.GET("/api/v1/produtos", handlers.GetApiProdutos)

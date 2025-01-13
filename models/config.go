@@ -14,6 +14,7 @@ type Produto struct {
 type Poke struct {
 	gorm.Model
 	Nome string
+	Numero uint64
 	Tipo string
 	Caracteristica string
 	Peso float32
