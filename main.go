@@ -8,40 +8,15 @@ import (
 	"net/http"
 	"time"
 
-	"hate/controllers"
+	"hate/handlers"
 	"hate/models"
+	"hate/types"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
-type CurrentData struct {
-	Interval            int     `json:"interval"`
-	RelativeHumidity2m  int     `json:"relative_humidity_2m"`
-	Temperature2m       float64 `json:"temperature_2m"`
-	Time                string  `json:"time"`
-	WindSpeed10m        float64 `json:"wind_speed_10m"`
-}
 
-type CurrentUnits struct {
-	Interval           string `json:"interval"`
-	RelativeHumidity2m string `json:"relative_humidity_2m"`
-	Temperature2m      string `json:"temperature_2m"`
-	Time               string `json:"time"`
-	WindSpeed10m       string `json:"wind_speed_10m"`
-}
-
-type WeatherData struct {
-	Current        CurrentData  `json:"current"`
-	CurrentUnits   CurrentUnits `json:"current_units"`
-	Elevation      float64      `json:"elevation"`
-	GenerationTime float64      `json:"generationtime_ms"`
-	Latitude       float64      `json:"latitude"`
-	Longitude      float64      `json:"longitude"`
-	Timezone       string       `json:"timezone"`
-	TimezoneAbbrev string       `json:"timezone_abbreviation"`
-	UtcOffset      int          `json:"utc_offset_seconds"`
-}
 
 
 func main() {
@@ -50,24 +25,21 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Static("/static"))
 
-	e.GET("/", controllers.ShowIndex)
-	e.GET("/pages/home", controllers.ShowHome)
-	e.GET("/pages/sobre", controllers.ShowSobre)
-	e.GET("/pages/tempo", controllers.ShowTempo)
-	e.GET("/pages/produtos", controllers.ShowProdutos)
+	e.GET("/", handlers.GetIndex)
+	e.GET("/sobre/page", handlers.GetSobrePage)
+	e.GET("/tempo/page", handlers.GetTempoPage)
 	
-	e.POST("/actions/produto/adiciona", controllers.AdicionaProduto)
-	e.PUT("/actions/produto/altera/:id", controllers.AlteraProduto)
-	e.DELETE("/actions/produto/deleta/:id", controllers.DeletaProduto)
+	e.GET("/produtos/page", handlers.GetProdutosPage)
+	e.GET("/produtos/form", handlers.GetProdutosForm)
+	e.GET("/produtos", handlers.GetProdutos)
+	e.GET("/produtos/:id", handlers.GetProdutosId)
+	e.GET("/produtos/form/:id", handlers.GetProdutoFormId)
+	e.POST("/produtos", handlers.PostProdutos)
+	e.PUT("/produtos/:id", handlers.PutProdutosId)
+	e.DELETE("/produtos/:id", handlers.DeletaProdutosId)
 
-	e.GET("/components/header", controllers.GetHeader)
-	e.GET("/components/produto-form-add", controllers.GetProdutoFormAdd)
-	e.GET("/components/produto-list", controllers.GetProdutoList)
-	e.GET("/components/card-produto/:id", controllers.GetCardProduto)
-	e.GET("/components/produto-form-edita/:id", controllers.GetProdutoFormEdita)
-
-	e.GET("/api/v1/produtos", controllers.GetProdutos)
-	e.POST("/api/v1/produtos", controllers.StoreProduto)
+	e.GET("/api/v1/produtos", handlers.GetApiProdutos)
+	e.POST("/api/v1/produtos", handlers.PostApiProduto)
 
 	e.GET("/tempo-ita", func(c echo.Context) error {
 		log.Printf("SSE client connected, ip: %v", c.RealIP())
@@ -99,13 +71,13 @@ func main() {
 
 				// parse payload
 				body, _ := io.ReadAll(resp.Body)
-				var payload WeatherData
+				var payload types.WeatherData
 				_ = json.Unmarshal(body, &payload)
 				message := fmt.Sprintf("<div>temperatura: %v</div><div>velocidade do vento: %v</div>", payload.Current.Temperature2m, payload.Current.WindSpeed10m)
 				
 
 				// fires response
-				event := controllers.Event{
+				event := handlers.Event{
 					Data: []byte(message),
 					Event: []byte("blondel"),
 				}
@@ -119,5 +91,5 @@ func main() {
 	})
 
 
-	e.Logger.Fatal(e.Start(":3853"))
+	e.Logger.Fatal(e.Start(":3000"))
 }

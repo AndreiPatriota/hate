@@ -8,10 +8,12 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "hate/models"
-import "fmt"
+import (
+	"fmt"
+	"hate/models"
+)
 
-func CardProduto(produto models.Produto) templ.Component {
+func ProdutosFormId(produto models.Produto) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -32,72 +34,59 @@ func CardProduto(produto models.Produto) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<article class=\"produto\" id=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\n\t\tfunction produtosFormIdData() {\n\t\t\treturn {\n\t\t\t\tfechaForm() {\n\t\t\t\t\tsetTimeout(()=>{\n\t\t\t\t\t\tthis.$refs.nomeInput.value = ''\n\t\t\t\t\t\tthis.$refs.descricaoInput.value = ''\n\t\t\t\t\t\t$refs.popup.close()\n\t\t\t\t\t}, 100)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t</script><div x-data=\"produtosFormIdData\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close</i></div><form hx-put=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("produto-%v", produto.ID))
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/actions/produto/altera/%v", produto.ID))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produto-card.templ`, Line: 8, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 32, Col: 84}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"><header><h3>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Nome)
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("#produto-%v", produto.ID))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produto-card.templ`, Line: 10, Col: 22}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 33, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3><i class=\"material-icons\" hx-delete=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-swap=\"outterHTML\" x-on:submit=\"fechaForm();\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/actions/produto/deleta/%d", produto.ID))))
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Nome)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produto-card.templ`, Line: 13, Col: 90}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 46, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"#lista-produtos\" hx-swap=\"innerHTML\" hx-trigger=\"click\">delete </i> <i class=\"material-icons\" hx-get=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/components/produto-form-edita/%v", produto.ID))))
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Descricao)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produto-card.templ`, Line: 21, Col: 94}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 58, Col: 30}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"#formulario-produto\" hx-swap=\"innerHTML\" hx-trigger=\"click\" x-on:click=\"abreForm\">edit </i></header><section><p>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Descricao)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produto-card.templ`, Line: 30, Col: 27}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></section></article>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

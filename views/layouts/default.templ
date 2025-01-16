@@ -1,0 +1,73 @@
+package layouts
+
+templ Default(titulo string) {
+	<!DOCTYPE html>
+	<html lang="pt-br">
+		<head>
+			@head("Olarrrrrrrrr")
+		</head>
+		<body class="container">
+			<header class="main">
+				@navbar(titulo)
+			</header>
+			<main>
+				{ children... }
+			</main>
+		</body>
+	</html>
+}
+
+templ head(titulo string) {
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	<script src="//unpkg.com/alpinejs" defer></script>
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+	/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
+	<style>
+        article.produto > header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .btn-close-form-produto {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+      }
+      </style>
+	<title>{ titulo }</title>
+}
+
+templ navbar(titulo string) {
+	<div x-data>
+		<nav hx-boost="true">
+			<ul>
+				<li>
+					<a href="/">Home</a>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<h1>{ titulo }</h1>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<a href="/produtos/page">Produtos</a>
+				</li>
+				<li>
+					<a href="/tempo/page">Tempo em Ita</a>
+				</li>
+				<li>
+					<a href="/sobre/page">Sobre</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+}

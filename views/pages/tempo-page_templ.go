@@ -8,10 +8,14 @@ package pages
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "hate/models"
-import "hate/views/components"
+import "hate/views/layouts"
 
-func Produtos(produtos []models.Produto) templ.Component {
+type TempoAgora struct {
+	Temp  float32
+	Vento float32
+}
+
+func TempoIta() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -32,15 +36,25 @@ func Produtos(produtos []models.Produto) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"page\" x-data=\"{\n      abreForm() {\n        this.$refs.popup.showModal();\n      }\n    }\"><h2>Aqui está a página de produtos</h2><button hx-get=\"/components/produto-form-add\" hx-target=\"#formulario-produto\" hx-swap=\"innerHTML\" x-on:click=\"abreForm\">Adiciona</button><div id=\"lista-produtos\">")
-		if templ_7745c5c3_Err != nil {
+		templ_7745c5c3_Var2 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+			templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+			templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+			if !templ_7745c5c3_IsBuffer {
+				defer func() {
+					templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+					if templ_7745c5c3_Err == nil {
+						templ_7745c5c3_Err = templ_7745c5c3_BufErr
+					}
+				}()
+			}
+			ctx = templ.InitializeContext(ctx)
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h2>Como está o tempo em Itapetim?</h2><div hx-ext=\"sse\" sse-connect=\"/tempo-ita\"><div sse-swap=\"blondel\"></div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = components.ListProdutos(produtos).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\"><div id=\"formulario-produto\"></div></dialog></div>")
+		})
+		templ_7745c5c3_Err = layouts.Default("Tempo em Ita").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

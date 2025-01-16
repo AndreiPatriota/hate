@@ -1,7 +1,11 @@
 package pages
 
+import "hate/views/layouts"
+
 templ Home() {
-    <div class="page">
-        <p>Aqui está a página de Home</p>
-    </div>
+	@layouts.Default("Pricipal") {
+		<div class="page">
+			<p>Aqui está a página de Home</p>
+		</div>
+	}
 }

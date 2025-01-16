@@ -8,7 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Header() templ.Component {
+func ProdutosForm() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +29,7 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<header class=\"main\"><div x-data=\"{ tituloPagina : &#39;Principal&#39; }\"><nav><ul><li><a href=\"\" hx-get=\"/pages/home\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Principal&#39;\">Home</a></li></ul><ul><li><h1 x-text=\"tituloPagina\"></h1></li></ul><ul><li><a href=\"\" hx-get=\"/pages/produtos\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Produtos&#39;\">Produtos</a></li><li><a href=\"\" hx-get=\"/pages/tempo\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Tempo em Ita&#39;\">Tempo</a></li><li><a href=\"\" hx-get=\"/pages/sobre\" hx-target=\"main\" hx-swap=\"innerhtml\" x-on:click=\"tituloPagina = &#39;Sobre&#39;\">Sobre</a></li></ul></nav></div></header>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\n\t\tfunction produtosFormData() {\n\t\t\treturn {\n\t\t\t\tfechaForm() {\n\t\t\t\t\tsetTimeout(()=>{\n\t\t\t\t\t\tthis.$refs.nomeInput.value = ''\n\t\t\t\t\t\tthis.$refs.descricaoInput.value = ''\n\t\t\t\t\t\t$refs.popup.close()\n\t\t\t\t\t}, 100)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t</script><div x-data=\"produtosFormData\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close </i></div><form hx-post=\"/produtos\" hx-target=\"#lista-produtos\" hx-swap=\"innerHTML\" x-on:submit=\"fechaForm\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
