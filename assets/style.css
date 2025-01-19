@@ -9,3 +9,7 @@ article.produto > header {
   display: flex;
   flex-flow: row-reverse nowrap;
 }
+
+article.pokemon {
+  
+}

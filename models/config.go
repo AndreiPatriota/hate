@@ -11,6 +11,17 @@ type Produto struct {
 	Descricao string
 }
 
+type Poke struct {
+	gorm.Model
+	Nome string
+	Numero uint64
+	Tipo string
+	Caracteristica string
+	Peso float32
+	FotoUrl string
+	ChoroUrl string
+}
+
 var DB *gorm.DB
 func InitDb() {
 	db, err := gorm.Open(sqlite.Open("./models/base.db"), &gorm.Config{})
@@ -19,6 +30,7 @@ func InitDb() {
 	}
 
 	db.AutoMigrate(&Produto{})
+	db.AutoMigrate(&Poke{})
 
 	DB = db
 }

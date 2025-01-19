@@ -22,6 +22,7 @@ templ ProdutosPage(produtos []models.Produto) {
 			</div>
 			<dialog
 				x-ref="popup"
+				@abre-form="$el.showModal()"
 				@fecha-form="setTimeout(()=>{ $el.close() }, 100)"
 			>
 				<div id="produtos-form"></div>

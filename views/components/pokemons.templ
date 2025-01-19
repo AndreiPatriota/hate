@@ -1,0 +1,9 @@
+package components
+
+import "hate/models"
+
+templ Pokemons(pokemons []models.Poke) {
+	for _, p := range pokemons {
+		@PokemonsId(p)
+	}
+}

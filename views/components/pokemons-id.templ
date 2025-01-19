@@ -1,0 +1,39 @@
+package components
+
+import (
+	"fmt"
+	"hate/models"
+)
+
+templ PokemonsId(pokemon models.Poke) {
+	<article class="pokemon">
+		<header>
+			<div class="grid">
+				<div><img src={ pokemon.FotoUrl }/></div>
+				<div>{ pokemon.Nome }</div>
+				<div>
+					<audio controls>
+						<source src={ pokemon.ChoroUrl } type="audio/ogg"/>
+						<i class="material-icons">
+							volume-high 
+						</i>
+					</audio>
+				</div>
+			</div>
+		</header>
+		<section>
+			{ pokemon.Caracteristica }
+		</section>
+		<footer class="card-footer">
+			<i
+				class="material-icons"
+				hx-delete={ string(templ.URL(fmt.Sprintf("/pokemons/%v", pokemon.Numero))) }
+				hx-target="closest article"
+				hx-swap="outerHTML"
+				hx-trigger="click"
+			>
+				delete 
+			</i>
+		</footer>
+	</article>
+}
