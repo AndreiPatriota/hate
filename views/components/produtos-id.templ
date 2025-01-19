@@ -5,35 +5,32 @@ import (
 	"hate/models"
 )
 
-templ CardProduto(produto models.Produto) {
-	<article
-		class="produto"
-		id={ fmt.Sprintf("produto-%v", produto.ID) }
-	>
-		<header>
-			<h3>{ produto.Nome }</h3>
-			<i
-				class="material-icons"
-				hx-delete={ string(templ.URL(fmt.Sprintf("/actions/produto/deleta/%d", produto.ID))) }
-				hx-target="#lista-produtos"
-				hx-swap="innerHTML"
-				hx-trigger="click"
-			>
-				delete 
-			</i>
-			<i
-				class="material-icons"
-				hx-get={ string(templ.URL(fmt.Sprintf("/components/produto-form-edita/%v", produto.ID))) }
-				hx-target="#formulario-produto"
-				hx-swap="innerHTML"
-				hx-trigger="click"
-				x-on:click="abreForm"
-			>
-				edit 
-			</i>
-		</header>
-		<section>
-			<p>{ produto.Descricao } </p>
-		</section>
-	</article>
+templ ProdutosId(produto models.Produto) {
+	<div x-data>
+		<article class="produto" id={ fmt.Sprintf("produto-%v", produto.ID) }>
+			<header>
+				<h3>{ produto.Nome }</h3>
+				<i
+					class="material-icons"
+					hx-delete={ string(templ.URL(fmt.Sprintf("/produtos/%d", produto.ID))) }
+					hx-target="#produtos"
+					hx-trigger="click"
+				>
+					delete
+				</i>
+				<i
+					class="material-icons"
+					hx-get={ string(templ.URL(fmt.Sprintf("/produtos/form/%v", produto.ID))) }
+					hx-target="#produtos-form"
+					hx-trigger="click"
+					@click="$dispatch('abre-form')"
+				>
+					edit
+				</i>
+			</header>
+			<section>
+				<p>{ produto.Descricao } </p>
+			</section>
+		</article>
+	</div>
 }

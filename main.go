@@ -13,7 +13,6 @@ import (
 	"hate/types"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 )
 
 
@@ -23,7 +22,7 @@ func main() {
 	models.InitDb()
 
 	e := echo.New()
-	e.Use(middleware.Static("/static"))
+	e.Static("/", "assets")
 
 	e.GET("/", handlers.GetIndex)
 	e.GET("/sobre/page", handlers.GetSobrePage)

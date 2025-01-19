@@ -47,7 +47,7 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\n\t\t\tfunction produtosPageData() {\n\t\t\treturn {\n\t\t\t\tabreForm() {\n\t\t\t\t\tthis.$refs.popup.showModal();\n\t\t\t\t}\n\t\t\t}\n\t\t\t}\n  \t\t</script> <div x-data=\"produtosPageData\"><h2>Aqui está a página de produtos</h2><button hx-get=\"/produtos/form\" hx-target=\"#produtos-form\" hx-swap=\"innerHTML\" x-on:click=\"abreForm\">Adiciona</button><div id=\"produtos\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data><h2>Aqui está a página de produtos</h2><button hx-get=\"/produtos/form\" hx-target=\"#produtos-form\" @click=\"$refs.popup.showModal()\">Adiciona</button><div id=\"produtos\" @abre-form=\"$refs.popup.showModal()\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -55,7 +55,7 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\"><div id=\"produtos-form\"></div></dialog></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\" @fecha-form=\"setTimeout(()=&gt;{ $el.close() }, 100)\"><div id=\"produtos-form\"></div></dialog></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

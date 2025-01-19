@@ -8,29 +8,22 @@ import (
 
 templ ProdutosPage(produtos []models.Produto) {
 	@layouts.Default("Produtos") {
-		<script>
-			function produtosPageData() {
-			return {
-				abreForm() {
-					this.$refs.popup.showModal();
-				}
-			}
-			}
-  		</script>
-		<div x-data="produtosPageData">
+		<div x-data>
 			<h2>Aqui está a página de produtos</h2>
 			<button
 				hx-get="/produtos/form"
 				hx-target="#produtos-form"
-				hx-swap="innerHTML"
-				x-on:click="abreForm"
+				@click="$refs.popup.showModal()"
 			>
 				Adiciona
 			</button>
-			<div id="produtos">
+			<div id="produtos" @abre-form="$refs.popup.showModal()">
 				@components.Produtos(produtos)
 			</div>
-			<dialog x-ref="popup">
+			<dialog
+				x-ref="popup"
+				@fecha-form="setTimeout(()=>{ $el.close() }, 100)"
+			>
 				<div id="produtos-form"></div>
 			</dialog>
 		</div>

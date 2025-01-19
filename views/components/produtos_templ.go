@@ -32,7 +32,7 @@ func Produtos(produtos []models.Produto) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		for _, p := range produtos {
-			templ_7745c5c3_Err = CardProduto(p).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = ProdutosId(p).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

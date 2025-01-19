@@ -3,7 +3,7 @@ package components
 import "hate/models"
 
 templ Produtos(produtos []models.Produto) {
-    for _, p := range produtos {
-        @CardProduto(p)
-    }
+	for _, p := range produtos {
+		@ProdutosId(p)
+	}
 }

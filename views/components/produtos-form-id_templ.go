@@ -34,14 +34,14 @@ func ProdutosFormId(produto models.Produto) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\n\t\tfunction produtosFormIdData() {\n\t\t\treturn {\n\t\t\t\tfechaForm() {\n\t\t\t\t\tsetTimeout(()=>{\n\t\t\t\t\t\tthis.$refs.nomeInput.value = ''\n\t\t\t\t\t\tthis.$refs.descricaoInput.value = ''\n\t\t\t\t\t\t$refs.popup.close()\n\t\t\t\t\t}, 100)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t</script><div x-data=\"produtosFormIdData\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close</i></div><form hx-put=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data><div class=\"btn-close-form-produto\"><i @click=\"$dispatch(&#39;fecha-form&#39;)\" class=\"material-icons\">close</i></div><form hx-put=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/actions/produto/altera/%v", produto.ID))))
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL(fmt.Sprintf("/produtos/%v", produto.ID))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 32, Col: 84}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 16, Col: 70}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -54,33 +54,33 @@ func ProdutosFormId(produto models.Produto) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("#produto-%v", produto.ID))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 33, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 17, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-swap=\"outterHTML\" x-on:submit=\"fechaForm();\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\" value=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-swap=\"outerHTML\" @submit=\"$dispatch(&#39;fecha-form&#39;);\">s <label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Nome)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 46, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 28, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\" value=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(produto.Descricao)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 58, Col: 30}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/produtos-form-id.templ`, Line: 39, Col: 30}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {

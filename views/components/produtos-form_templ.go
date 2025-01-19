@@ -29,7 +29,7 @@ func ProdutosForm() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script>\n\t\tfunction produtosFormData() {\n\t\t\treturn {\n\t\t\t\tfechaForm() {\n\t\t\t\t\tsetTimeout(()=>{\n\t\t\t\t\t\tthis.$refs.nomeInput.value = ''\n\t\t\t\t\t\tthis.$refs.descricaoInput.value = ''\n\t\t\t\t\t\t$refs.popup.close()\n\t\t\t\t\t}, 100)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t</script><div x-data=\"produtosFormData\"><div class=\"btn-close-form-produto\"><i x-on:click=\"fechaForm\" class=\"material-icons\">close </i></div><form hx-post=\"/produtos\" hx-target=\"#lista-produtos\" hx-swap=\"innerHTML\" x-on:submit=\"fechaForm\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data><div class=\"btn-close-form-produto\"><i @click=\"$dispatch(&#39;fecha-form&#39;)\" class=\"material-icons\">close </i></div><form hx-post=\"/produtos\" hx-target=\"#produtos\" @submit=\"$dispatch(&#39;fecha-form&#39;)\"><label for=\"nome\">Nome: <input id=\"nome\" name=\"nome\" type=\"text\" x-ref=\"nomeInput\"></label> <label for=\"descricao\">Descrição: <input id=\"descricao\" name=\"descricao\" type=\"text\" x-ref=\"descricaoInput\"></label> <input type=\"submit\" value=\"Cadastra\"> <input type=\"reset\" value=\"Limpa\"></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

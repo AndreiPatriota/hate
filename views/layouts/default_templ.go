@@ -82,14 +82,14 @@ func head(titulo string) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"//unpkg.com/alpinejs\" defer></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css\"><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><style>\n        article.produto > header {\n        display: flex;\n        flex-flow: row nowrap;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .btn-close-form-produto {\n        display: flex;\n        flex-flow: row-reverse nowrap;\n      }\n      </style><title>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"/index.js\"></script><script src=\"//unpkg.com/alpinejs\" defer></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css\"><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><style>\n        article.produto > header {\n        display: flex;\n        flex-flow: row nowrap;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .btn-close-form-produto {\n        display: flex;\n        flex-flow: row-reverse nowrap;\n      }\n      </style><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(titulo)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 44, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 45, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -131,7 +131,7 @@ func navbar(titulo string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(titulo)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 57, Col: 17}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 58, Col: 17}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {

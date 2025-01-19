@@ -13,8 +13,6 @@ func GetProdutosForm (c echo.Context) error {
 	return render(c, components.ProdutosForm())
 }
 
-
-
 func GetProdutosPage(c echo.Context) error {
 	var produtos []models.Produto
 	models.DB.Find(&produtos)
@@ -55,7 +53,7 @@ func PutProdutosId(c echo.Context) error {
 	produto.Descricao = novaDescricao
 	models.DB.Save(&produto)
 
-	return render(c, components.CardProduto(produto))
+	return render(c, components.ProdutosId(produto))
 
 }
 func DeletaProdutosId(c echo.Context) error {
@@ -85,7 +83,7 @@ func GetProdutosId(c echo.Context) error {
 
 	models.DB.Find(&produto, id)
 
-	return render(c, components.CardProduto(produto))
+	return render(c, components.ProdutosId(produto))
 }
 
 func GetProdutoFormId(c echo.Context) error {
