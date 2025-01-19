@@ -14,7 +14,7 @@ import (
 	"hate/views/layouts"
 )
 
-func ProdutosPage(produtos []models.Produto) templ.Component {
+func PokemonsPage(pokemons []models.Poke) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -47,21 +47,21 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data><h2>Aqui está a página de produtos</h2><button hx-get=\"/produtos/form\" hx-target=\"#produtos-form\" @click=\"$refs.popup.showModal()\">Adiciona</button><div id=\"produtos\" @abre-form=\"$refs.popup.showModal()\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data x-init=\"$el.addEventListener(&#39;htmx:responseError&#39;, (event) =&gt; {\n\t\t\t\talert(&#39;Não achei esse Pokemon&#39;)\n\t\t\t})\"><form hx-post=\"/pokemons\" hx-target=\"#pokemons\" hx-swap=\"afterbegin\"><input type=\"search\" name=\"nomePokemon\"> <button type=\"submit\">Busca</button></form><div id=\"pokemons\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.Produtos(produtos).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Pokemons(pokemons).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\" @abre-form=\"$el.showModal()\" @fecha-form=\"setTimeout(()=&gt;{ $el.close() }, 100)\"><div id=\"produtos-form\"></div></dialog></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = layouts.Default("Produtos").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Default("Pokemons").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -35,7 +35,11 @@ func main() {
 	e.GET("/produtos/form/:id", handlers.GetProdutoFormId)
 	e.POST("/produtos", handlers.PostProdutos)
 	e.PUT("/produtos/:id", handlers.PutProdutosId)
-	e.DELETE("/produtos/:id", handlers.DeletaProdutosId)
+	e.DELETE("/produtos/:id", handlers.DeleteProdutosId)
+
+	e.GET("/pokemons/page", handlers.GetPokemonsPage)
+	e.POST("/pokemons", handlers.PostPokemons)
+	e.DELETE("/pokemons/:id", handlers.DeletePokemonsId)
 
 	e.GET("/api/v1/produtos", handlers.GetApiProdutos)
 	e.POST("/api/v1/produtos", handlers.PostApiProduto)

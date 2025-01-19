@@ -56,7 +56,7 @@ func PutProdutosId(c echo.Context) error {
 	return render(c, components.ProdutosId(produto))
 
 }
-func DeletaProdutosId(c echo.Context) error {
+func DeleteProdutosId(c echo.Context) error {
 	id, _ := strconv.ParseInt(c.Param("id"), 10, 32)
 
 	models.DB.Delete(&models.Produto{}, id)
