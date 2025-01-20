@@ -1,15 +1,99 @@
-article.produto > header {
+/* Base styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: white;
+  position: relative;
 }
 
-.btn-close-form-produto {
-  display: flex;
-  flex-flow: row-reverse nowrap;
+.navbar__title {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  flex-grow: 1;
 }
 
-article.pokemon {
-  
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.navbar__home {
+  display: none;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__links {
+  display: none;
+}
+
+.navbar__link {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.navbar__link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile-first styling */
+@media (max-width: 768px) {
+  .navbar__burger {
+    display: flex;
+  }
+
+  .navbar__title {
+    text-align: right;
+  }
+
+  .navbar__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #444;
+    flex-direction: column;
+    display: none;
+  }
+
+  .navbar__link {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .navbar__links--active {
+    display: flex;
+  }
+}
+
+/* Desktop styling */
+@media (min-width: 769px) {
+  .navbar__burger {
+    display: none;
+  }
+
+  .navbar__home {
+    display: block;
+  }
+
+  .navbar__title {
+    text-align: center;
+    flex-grow: 0;
+  }
+
+  .navbar__links {
+    display: flex;
+  }
 }
