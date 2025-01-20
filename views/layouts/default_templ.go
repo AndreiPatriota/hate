@@ -82,14 +82,14 @@ func head(titulo string) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"/index.js\"></script><link rel=\"stylesheet\" href=\"/style.css\"><script src=\"//unpkg.com/alpinejs\" defer></script><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><style>\n        article.produto > header {\n        display: flex;\n        flex-flow: row nowrap;\n        justify-content: space-between;\n        align-items: center;\n      }\n\n      .btn-close-form-produto {\n        display: flex;\n        flex-flow: row-reverse nowrap;\n      }\n      </style><title>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://unpkg.com/htmx.org@1.9.10\"></script><script src=\"/index.js\"></script><link rel=\"stylesheet\" href=\"/style.css\"><script src=\"//unpkg.com/alpinejs\" defer></script><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><script src=\"https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js\"></script><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(titulo)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 42, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 29, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -131,13 +131,13 @@ func navbar(titulo string) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(titulo)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 56, Col: 37}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layouts/default.templ`, Line: 43, Col: 37}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar__links\" id=\"nav-links\" x-ref=\"navLinks\"><a href=\"/produtos/page\" class=\"navbar__link\">Produtos</a> <a href=\"/pokemons/page\" class=\"navbar__link\">Pokemons</a> <a href=\"/tempo/page\" class=\"navbar__link\">Tempo em Ita</a> <a href=\"/sobre/page\" class=\"navbar__link\">Sobre</a></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar__links\" id=\"nav-links\" x-ref=\"navLinks\"><a href=\"/\" class=\"navbar__link navbar__link--home\">Home</a> <a href=\"/produtos/page\" class=\"navbar__link\">Produtos</a> <a href=\"/pokemons/page\" class=\"navbar__link\">Pokemons</a> <a href=\"/tempo/page\" class=\"navbar__link\">Tempo em Ita</a> <a href=\"/sobre/page\" class=\"navbar__link\">Sobre</a></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

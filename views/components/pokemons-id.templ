@@ -6,34 +6,37 @@ import (
 )
 
 templ PokemonsId(pokemon models.Poke) {
-	<article class="pokemon">
-		<header>
-			<div class="grid">
-				<div><img src={ pokemon.FotoUrl }/></div>
-				<div>{ pokemon.Nome }</div>
-				<div>
-					<audio controls>
-						<source src={ pokemon.ChoroUrl } type="audio/ogg"/>
-						<i class="material-icons">
-							volume-high 
-						</i>
-					</audio>
-				</div>
-			</div>
-		</header>
-		<section>
-			{ pokemon.Caracteristica }
-		</section>
-		<footer class="card-footer">
-			<i
-				class="material-icons"
+	<div class="pokemon-card">
+		<div class="pokemon-card__header">
+			<img
+				src={ pokemon.FotoUrl }
+				alt={ pokemon.Nome }
+				class="pokemon-card__header-image"
+			/>
+			<h1 class="pokemon-card__header-title">{ pokemon.Nome }</h1>
+			<audio class="pokemon-card__header-audio" controls>
+				<source src={ pokemon.ChoroUrl } type="audio/ogg"/>
+				<i class="material-icons">
+					volume-high 
+				</i>
+			</audio>
+		</div>
+		<div class="pokemon-card__body">
+			<p class="pokemon-card__body-description">
+				{ pokemon.Caracteristica }
+			</p>
+		</div>
+		<div class="pokemon-card__footer">
+			<button
+				class="pokemon-card__footer-button"
 				hx-delete={ string(templ.URL(fmt.Sprintf("/pokemons/%v", pokemon.Numero))) }
-				hx-target="closest article"
+				hx-target="closest .pokemon-card"
 				hx-swap="outerHTML"
-				hx-trigger="click"
 			>
-				delete 
-			</i>
-		</footer>
-	</article>
+				<i class="material-icons">
+					delete 
+				</i>
+			</button>
+		</div>
+	</div>
 }

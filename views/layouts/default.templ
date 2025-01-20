@@ -26,19 +26,6 @@ templ head(titulo string) {
 	<script src="//unpkg.com/alpinejs" defer></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
-	<style>
-        article.produto > header {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .btn-close-form-produto {
-        display: flex;
-        flex-flow: row-reverse nowrap;
-      }
-      </style>
 	<title>{ titulo }</title>
 }
 
@@ -55,6 +42,7 @@ templ navbar(titulo string) {
 			<a href="/" class="navbar__home">Home</a>
 			<h1 class="navbar__title">{ titulo }</h1>
 			<div class="navbar__links" id="nav-links" x-ref="navLinks">
+				<a href="/" class="navbar__link navbar__link--home">Home</a>
 				<a href="/produtos/page" class="navbar__link">Produtos</a>
 				<a href="/pokemons/page" class="navbar__link">Pokemons</a>
 				<a href="/tempo/page" class="navbar__link">Tempo em Ita</a>

@@ -14,11 +14,21 @@ templ PokemonsPage(pokemons []models.Poke) {
 				alert('Não achei esse Pokemon')
 			})"
 		>
-			<form hx-post="/pokemons" hx-target="#pokemons" hx-swap="afterbegin">
-				<input type="search" name="nomePokemon"/>
-				<button type="submit">Busca</button>
+			<form
+				class="search-form"
+				hx-post="/pokemons"
+				hx-target="#pokemons"
+				hx-swap="afterbegin"
+			>
+				<input
+					type="text"
+					class="search-form__input"
+					placeholder="Busca Pokémon..."
+					name="nomePokemon"
+				/>
+				<button type="submit" class="search-form__button">Procurar</button>
 			</form>
-			<div id="pokemons">
+			<div id="pokemons" class="pokemon-list">
 				@components.Pokemons(pokemons)
 			</div>
 		</div>
