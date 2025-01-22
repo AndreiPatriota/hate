@@ -124,7 +124,7 @@ func navbar(titulo string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data><nav hx-boost=\"true\" class=\"navbar\"><div class=\"navbar__burger\" id=\"burger\" @click=\"$refs.navLinks.classList.toggle(&#39;navbar__links--active&#39;)\"><i class=\"material-icons\">menu</i></div><a href=\"/\" class=\"navbar__home\">Home</a><h1 class=\"navbar__title\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data=\"{ menuAberto : false }\"><nav hx-boost=\"true\" class=\"navbar\"><div class=\"navbar__burger\" id=\"burger\" @click=\"menuAberto = !menuAberto\"><i class=\"material-icons\">menu</i></div><a href=\"/\" class=\"navbar__home\">Home</a><h1 class=\"navbar__title\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -137,7 +137,7 @@ func navbar(titulo string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar__links\" id=\"nav-links\" x-ref=\"navLinks\"><a href=\"/\" class=\"navbar__link navbar__link--home\">Home</a> <a href=\"/produtos/page\" class=\"navbar__link\">Produtos</a> <a href=\"/pokemons/page\" class=\"navbar__link\">Pokemons</a> <a href=\"/tempo/page\" class=\"navbar__link\">Tempo em Ita</a> <a href=\"/sobre/page\" class=\"navbar__link\">Sobre</a></div></nav></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"navbar__links\" :class=\"menuAberto || &#39;navbar__links--active&#39;\" id=\"nav-links\"><a href=\"/\" class=\"navbar__link navbar__link--home\">Home</a> <a href=\"/produtos/page\" class=\"navbar__link\">Produtos</a> <a href=\"/pokemons/page\" class=\"navbar__link\">Pokemons</a> <a href=\"/tempo/page\" class=\"navbar__link\">Tempo em Ita</a> <a href=\"/sobre/page\" class=\"navbar__link\">Sobre</a></div></nav></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

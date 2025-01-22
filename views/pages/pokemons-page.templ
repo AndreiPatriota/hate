@@ -11,7 +11,7 @@ templ PokemonsPage(pokemons []models.Poke) {
 		<div
 			x-data
 			x-init="$el.addEventListener('htmx:responseError', (event) => {
-				alert('Não achei esse Pokemon')
+				alert(event.detail.xhr.responseText)
 			})"
 		>
 			<form

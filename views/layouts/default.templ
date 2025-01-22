@@ -30,18 +30,22 @@ templ head(titulo string) {
 }
 
 templ navbar(titulo string) {
-	<div x-data>
+	<div x-data="{ menuAberto : false }">
 		<nav hx-boost="true" class="navbar">
 			<div
 				class="navbar__burger"
 				id="burger"
-				@click="$refs.navLinks.classList.toggle('navbar__links--active')"
+				@click="menuAberto = !menuAberto"
 			>
 				<i class="material-icons">menu</i>
 			</div>
 			<a href="/" class="navbar__home">Home</a>
 			<h1 class="navbar__title">{ titulo }</h1>
-			<div class="navbar__links" id="nav-links" x-ref="navLinks">
+			<div
+				class="navbar__links"
+				:class="menuAberto || 'navbar__links--active'"
+				id="nav-links"
+			>
 				<a href="/" class="navbar__link navbar__link--home">Home</a>
 				<a href="/produtos/page" class="navbar__link">Produtos</a>
 				<a href="/pokemons/page" class="navbar__link">Pokemons</a>

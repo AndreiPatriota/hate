@@ -2,30 +2,47 @@ package components
 
 templ ProdutosForm() {
 	<div x-data>
-		<div class="btn-close-form-produto">
-			<i @click="$dispatch('fecha-form')" class="material-icons">close </i>
-		</div>
-		<form hx-post="/produtos" hx-target="#produtos" @submit="$dispatch('fecha-form')">
-			<label for="nome">
-				Nome:
+		<button
+			class="dialog__close-button"
+			aria-label="Close"
+			@click="$dispatch('fecha-form')"
+		>
+			<i class="material-icons">close </i>
+		</button>
+		<h2 class="dialog__title">Cadastra um Produto</h2>
+		<form
+			class="product-form"
+			hx-post="/produtos"
+			hx-target="#produtos"
+			@submit="$dispatch('fecha-form')"
+		>
+			<div class="product-form__group">
+				<label for="product-name" class="product-form__label">Nome</label>
 				<input
-					id="nome"
+					type="text"
+					id="product-name"
+					class="product-form__input"
+					placeholder="Nome do produto..."
 					name="nome"
-					type="text"
-					x-ref="nomeInput"
 				/>
-			</label>
-			<label for="descricao">
-				Descrição:
-				<input
-					id="descricao"
+			</div>
+			<div class="product-form__group">
+				<label for="product-description" class="product-form__label">Descrição</label>
+				<textarea
+					id="product-description"
+					class="product-form__textarea"
+					placeholder="Descrição do produto..."
 					name="descricao"
-					type="text"
-					x-ref="descricaoInput"
-				/>
-			</label>
-			<input type="submit" value="Cadastra"/>
-			<input type="reset" value="Limpa"/>
+				></textarea>
+			</div>
+			<div class="product-form__actions">
+				<button type="reset" class="product-form__button product-form__button--cancel">
+					Limpa
+				</button>
+				<button type="submit" class="product-form__button product-form__button--submit">
+					Cadastra
+				</button>
+			</div>
 		</form>
 	</div>
 }

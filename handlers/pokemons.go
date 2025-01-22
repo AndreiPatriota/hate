@@ -5,8 +5,8 @@ import (
 	"hate/models"
 	"hate/views/components"
 	"hate/views/pages"
-	"log"
 	"strconv"
+	"strings"
 
 	"github.com/labstack/echo/v4"
 	"github.com/mtslzr/pokeapi-go"
@@ -22,17 +22,13 @@ func GetPokemonsPage(c echo.Context) error {
 
 func PostPokemons(c echo.Context) error {
 	nome := c.FormValue("nomePokemon")
+	nome = strings.ToLower(strings.Trim(nome, " "))
 	var pokemon models.Poke
-	p, err := pokeapi.Pokemon(nome)
-	if err != nil {
-		log.Printf("BLONDEL %v", err)
-		return c.HTML(404, "")
-	}
 	
-	p2, err := pokeapi.PokemonSpecies(nome)
-	if err != nil {
-		log.Printf("BLONDEL %v", err)
-		return c.HTML(404, "")
+	p, err1 := pokeapi.Pokemon(nome)
+	p2, err2 := pokeapi.PokemonSpecies(nome)
+	if err1 != nil || err2 != nil {
+		return c.String(404, fmt.Sprintf("Não achei o Pokemon de nome %s =X", nome))
 	}
 
 

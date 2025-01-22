@@ -55,7 +55,7 @@ func ProdutosPage(produtos []models.Produto) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\" @abre-form=\"$el.showModal()\" @fecha-form=\"setTimeout(()=&gt;{ $el.close() }, 100)\"><div id=\"produtos-form\"></div></dialog></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><dialog x-ref=\"popup\" @abre-form=\"$el.showModal()\" @fecha-form=\"setTimeout(()=&gt;{ $el.close() }, 100)\" class=\"dialog\"><div id=\"produtos-form\" class=\"dialog__content\"></div></dialog></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

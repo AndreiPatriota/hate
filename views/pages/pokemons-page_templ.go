@@ -47,7 +47,7 @@ func PokemonsPage(pokemons []models.Poke) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data x-init=\"$el.addEventListener(&#39;htmx:responseError&#39;, (event) =&gt; {\n\t\t\t\talert(&#39;Não achei esse Pokemon&#39;)\n\t\t\t})\"><form class=\"search-form\" hx-post=\"/pokemons\" hx-target=\"#pokemons\" hx-swap=\"afterbegin\"><input type=\"text\" class=\"search-form__input\" placeholder=\"Busca Pokémon...\" name=\"nomePokemon\"> <button type=\"submit\" class=\"search-form__button\">Procurar</button></form><div id=\"pokemons\" class=\"pokemon-list\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div x-data x-init=\"$el.addEventListener(&#39;htmx:responseError&#39;, (event) =&gt; {\n\t\t\t\talert(event.detail.xhr.responseText)\n\t\t\t})\"><form class=\"search-form\" hx-post=\"/pokemons\" hx-target=\"#pokemons\" hx-swap=\"afterbegin\"><input type=\"text\" class=\"search-form__input\" placeholder=\"Busca Pokémon...\" name=\"nomePokemon\"> <button type=\"submit\" class=\"search-form__button\">Procurar</button></form><div id=\"pokemons\" class=\"pokemon-list\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
